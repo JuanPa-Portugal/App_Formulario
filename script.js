@@ -1,4 +1,6 @@
-(() => {
+import checkComplete from "./components/checkComplete.js";
+import deleteIcon from "./components/deleteIcon.js";
+
   // inmediately invoked function expression IIFE
 
   const btnAgregar = document.querySelector("[data-form-btn]");
@@ -20,35 +22,17 @@
     task.classList.add("card");
     titleTask.innerText = value;
     titleTask.classList.add("task");
+
+    //agregando un child al parent con .appendchild
     taskContent.appendChild(checkComplete());
     taskContent.appendChild(titleTask);
-
-    //agregando un child al parent
     task.appendChild(taskContent);
     list.appendChild(task);
-    const content = ` 
-  
-  <i class="fas fa-trash-alt trashIcon icon"></i>`;
-    //task.innerHTML = content; //se agrega al li que esta guardado en la consante task, contenido html mediante ".innerHTML"
-    /* agregando un child con .appendchild */
+    task.appendChild(deleteIcon());
   };
 
   btnAgregar.addEventListener("click", createTask);
 
-  const checkComplete = () => {
-    const i = document.createElement("i");
-    i.classList.add("far", "fa-check-square", "icon");
-    i.addEventListener("click", CompleteTask);
-    return i;
-  };
-
-  //funcion para animar el chek de la lista
-  //togle hace que quite o ponga una clase
-  const CompleteTask = (event) => {
-    const element = event.target; // target es una propiedad de event y selecciona el elemento clikeado
-    element.classList.toggle("fas");
-    element.classList.toggle("completeIcon");
-    element.classList.toggle("far");
-  };
-})(); // inmediately invoked function expression IIFE
-//se usa para proteger nuestro codigo y no sea accecible desde consola al usuario
+/*  (()=>{
+ }) inmediately invoked function expression IIFE
+se usa para proteger nuestro codigo y no sea accecible desde consola al usuario  se envuelve todo el script en la function arrow*/
